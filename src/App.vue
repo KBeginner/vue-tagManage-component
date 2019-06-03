@@ -1,18 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <tag-manager :tags="tags" :tagName="tagName"></tag-manager>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TagManager from './components/tag'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    TagManager
+  },
+  data() {
+    return {
+      tagName: 'name',
+      tags:[
+        {
+          id: 1,
+          name: 'vue.js'
+        },
+        {
+          id: 2,
+          name: 'element-ui'
+        }
+      ]
+    }
+  },
 }
 </script>
 
@@ -23,6 +37,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 50px auto;
+  width: 800px;
 }
 </style>
