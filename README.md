@@ -1,4 +1,4 @@
-# vue-tag-manage-com
+# vue-tag-manage-component
 
 ## Project setup
 ```
@@ -27,3 +27,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+# vue-tagManage-component
