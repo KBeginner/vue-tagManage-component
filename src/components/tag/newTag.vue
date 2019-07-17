@@ -7,8 +7,7 @@
             ref="saveTagInput"
             size="small"
             @keyup.enter.native="handleInputConfirm"
-            @blur="handleInputConfirm"
-            />
+            @blur="handleInputConfirm"/>
         <el-button v-else class="button-new-tag" size="small" @click="showInput">+ 添加</el-button>
     </span>
 </template>
@@ -42,8 +41,9 @@ export default {
 }
 </script>
 
-<style scoped>
-    .button-new-tag, .input-new-tag{
+<style lang="less" scoped>
+    @theme_color: #5F8BC9;
+    .tagMargin(){
         margin-right: 20px;
         margin-bottom: 20px;
     }
@@ -52,12 +52,14 @@ export default {
         line-height: 30px;
         padding-top: 0;
         padding-bottom: 0;
-        background-color: #01659e;
+        background-color: @theme_color;
         color: #fff;
-        border-radius: 5px;
+        border-radius: 5    px;
+        .tagMargin;
     }
     .input-new-tag {
         width: 100px;
         vertical-align: bottom;
+        .tagMargin;
     }
 </style>

@@ -11,11 +11,12 @@
             />
         <el-tag
             v-else
-            color="#fff"
+            type="info"
+            :color="tagBgColor"
             :closable="isClosable"
             :disable-transitions="true"
             @close="handleClose">
-            <a v-if="isClosable" @click="showInput">{{inputValue}}</a>
+            <a v-if="isClosable" @click="showInput" title="点击编辑">{{inputValue}}</a>
             <span v-else>{{inputValue}}</span>
         </el-tag>
     </span>
@@ -24,11 +25,11 @@
 <script>
 export default {
     name: 'TagBox',
-    props:['value', 'isClosable'],
+    props:[ 'tags','item', 'tagBgColor', 'isClosable'],
     data() {
         return {
             inputVisible: false,
-            inputValue: this.value
+            inputValue: this.item.typeName
         }
     },
     methods: {
@@ -45,31 +46,45 @@ export default {
         },
         // 编辑并切换标签
         handleInputConfirm() {
-            let inputValue = this.inputValue;
-            if (inputValue) {
-                this.$emit('handleSet',inputValue)
+            if (this.inputValue==''){
+                this.$message.error('操作失败，分类不能为空！')
+                return
+            } else {
+                this.$emit('handleSet',this.inputValue)
+                this.inputVisible = false;
             }
-            this.inputVisible = false;
+            /* let isInclude = this.tags.some(ele => {
+                return ele.typeName==this.inputValue && ele.typeId !== this.item.typeId
+            });
+            if (isInclude) {
+                this.$message.error('操作失败，该分类已存在！')
+                return
+            } else {
+                this.$emit('handleSet',this.inputValue)
+                this.inputVisible = false;
+            } */
         }
     },
     watch:{
-        value(){
-            this.inputValue = this.value
+        item(){
+            this.inputValue = this.item.typeName
         }
     }
 }
 </script>
 
-<style scoped>
-    .el-tag, .input-new-tag{
+<style lang="less" scoped>
+    .tagMargin(){
         margin-right: 20px;
         margin-bottom: 20px;
     }
     .el-tag{
         border: 1px solid #ddd;
+        .tagMargin;
     }
     .input-new-tag {
         width: 100px;
         vertical-align: bottom;
+        .tagMargin;
     }
 </style>
